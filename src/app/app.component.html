@@ -1,5 +1,53 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>{{title}}</span>
+  </mat-toolbar-row>
+
+  <!-- <mat-toolbar-row>
+    <span>Second Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon">verified_user</mat-icon>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+
+    <mat-icon class="example-icon">favorite</mat-icon>
+    <mat-icon class="example-icon">delete</mat-icon>
+  </mat-toolbar-row> -->
+</mat-toolbar>
+
+<h3>Members</h3>
+
+<mat-chip-list>
+  <mat-chip >조창범</mat-chip>
+  <mat-chip >BBB</mat-chip>
+  <mat-chip >고용재</mat-chip>
+  <mat-chip >DDD</mat-chip>
+</mat-chip-list>
+
+
+<br>
+<h3>Pool A</h3>
+<mat-chip-list>
+  <mat-chip color="warn" selected>조창범</mat-chip>
+  <mat-chip color="warn" selected>BBB</mat-chip>
+  <mat-chip color="warn" selected>고용재</mat-chip>
+  <mat-chip color="warn" selected>DDD</mat-chip>
+</mat-chip-list>
+<br>
+<h3>Pool B</h3>
+<mat-chip-list>
+  <mat-chip color="accent" selected>EEE</mat-chip>
+  <mat-chip color="accent" selected>임좌배</mat-chip>
+  <mat-chip color="accent" selected>GGG</mat-chip>
+  <mat-chip color="accent" selected>HHH</mat-chip>
+</mat-chip-list>
+<br>
+
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -17,4 +65,96 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+ -->
+<!-- 
 
+<h1>
+  {{title}}
+</h1>
+<div>
+<mat-form-field>
+  <input matInput placeholder="Simple Input" [(ngModel)]="title">
+</mat-form-field>
+</div>
+<div>
+<mat-icon>home</mat-icon>
+</div>
+
+<div>
+<button mat-raised-button>I'm a button</button>
+</div>
+<br>
+<div>
+<mat-form-field>
+  <mat-select placeholder="I'm a select" [(ngModel)]="selectedValue">
+    <mat-option *ngFor="let item of items" [value]="item.value">
+      {{item.view}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div> -->
+
+<!-- 
+<div>
+  <mat-toolbar color="primary">
+    <span><mat-icon>mood</mat-icon></span>
+
+    <span>Yay, Material in Angular 2!</span>
+
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item>Option 1</button>
+    <button mat-menu-item>Option 2</button>
+  </mat-menu>
+
+  <mat-card>
+    <button mat-button>All</button>
+    <button mat-raised-button>Of</button>
+    <button mat-raised-button color="primary">The</button>
+    <button mat-raised-button color="accent">Buttons</button>
+  </mat-card>
+
+  <span class="done">
+    <button mat-fab>
+      <mat-icon>check circle</mat-icon>
+    </button>
+  </span>
+</div> -->
+
+<h3>Basic Buttons</h3>
+<div class="example-button-row">
+  <button mat-button>Basic</button>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  <a mat-button routerLink=".">Link</a>
+</div>
+
+
+
+<h3>Raised Buttons</h3>
+<div class="example-button-row">
+  <button mat-raised-button>Basic</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-raised-button>Disabled</button>
+  <a mat-raised-button routerLink=".">Link</a>
+</div>
+
+<!-- <h3>json-server examples</h3>
+<div class="example-button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/list']"><mat-icon>list</mat-icon></a>
+  <a mat-raised-button color="primary" [routerLink]="['/create']"><mat-icon>add</mat-icon></a>
+</div> -->
+
+<h3>input?</h3>
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Simple Input" [(ngModel)]="title" />
+  </mat-form-field>
+</div>
