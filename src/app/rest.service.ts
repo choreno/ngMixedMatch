@@ -9,7 +9,7 @@ import {
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
 
-const endPoint = "http://localhost:3000/";
+const endPoint = "http://localhost:4200/";
 const httpOptions = {
   header: new HttpHeaders({
     "Content-Type": "application/json"
@@ -28,8 +28,6 @@ export class RestService {
   }
 
   getMembers(): Observable<any> {
-    return this.http.get(endPoint + 'Member').pipe(map(this.extractData)) ; 
+    return this.http.get(endPoint + "members").pipe(map(this.extractData));
   }
- 
-
 }

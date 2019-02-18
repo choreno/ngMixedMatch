@@ -1,6 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-
 import {
   MatInputModule,
   MatButtonModule,
@@ -10,13 +8,17 @@ import {
   MatIconModule,
   MatChipsModule,
   MatTableModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDividerModule
 } from "@angular/material";
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
+
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -25,7 +27,9 @@ import {
     MatIconModule,
     MatChipsModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    FlexLayoutModule
   ],
   exports: [
     MatInputModule,
@@ -36,7 +40,9 @@ import {
     MatIconModule,
     MatChipsModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    FlexLayoutModule
   ]
 })
 export class NgMaterialModule {}

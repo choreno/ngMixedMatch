@@ -8,6 +8,10 @@ import { FormsModule } from "@angular/forms";
 import { NgMaterialModule } from "./ng-material.module";
 import { HttpClientModule } from "@angular/common/http";
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,7 +19,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     FormsModule,
     NgMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

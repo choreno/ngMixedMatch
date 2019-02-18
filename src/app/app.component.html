@@ -2,39 +2,97 @@
   <mat-toolbar-row>
     <span>{{ title }}</span>
   </mat-toolbar-row>
-
-  <!-- <mat-toolbar-row>
-    <span>Second Line</span>
-    <span class="example-spacer"></span>
-    <mat-icon class="example-icon">verified_user</mat-icon>
-  </mat-toolbar-row>
-
-  <mat-toolbar-row>
-    <span>Third Line</span>
-    <span class="example-spacer"></span>
-
-    <mat-icon class="example-icon">favorite</mat-icon>
-    <mat-icon class="example-icon">delete</mat-icon>
-  </mat-toolbar-row> -->
 </mat-toolbar>
 
-<mat-grid-list cols="4" rowHeight="2:1">
-  <mat-grid-tile>1</mat-grid-tile>
-  <mat-grid-tile>2</mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
-</mat-grid-list>
+<!-- <div
+  class="container"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="center"
+>
+  <div fxFlex="20%">
+    <img
+      mat-card-image
+      class="img"
+      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/8V46UZCS0V.jpg"
+    />
+  </div>
+  <div fxFlex="20%">
+    <img
+      mat-card-image
+      class="img"
+      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/LTLE4QGRVQ.jpg"
+    />
+  </div>
+  <div fxFlex="20%">
+    <img
+      mat-card-image
+      class="img"
+      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/R926LU1YEA.jpg"
+    />
+  </div>
+  <div fxFlex="20%">
+    <img
+      mat-card-image
+      class="img"
+      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/U9PP3KXXY2.jpg"
+    />
+  </div>
+</div> -->
 
-<h3>Members</h3>
+<div class="container">
+  <h3>All Members</h3>
+  <mat-divider></mat-divider>
+  <mat-chip cdkDrag *ngFor="let member of members" style="margin:10px;">
+    {{ member.name }}
+  </mat-chip>
+  <mat-divider></mat-divider>
+</div>
 
-<mat-chip-list>
-  <mat-chip>조창범</mat-chip>
-  <mat-chip>BBB</mat-chip>
-  <mat-chip>고용재</mat-chip>
-  <mat-chip>DDD</mat-chip>
-</mat-chip-list>
+<!-- <div style="margin:5px;">
+    
+    <mat-chip cdkDrag cdkDragLockAxis="y" >조창범</mat-chip>
+    <mat-chip cdkDrag >BBB</mat-chip>
+    <mat-chip cdkDrag>고용재</mat-chip>
+    <mat-chip cdkDrag >DDD</mat-chip>
+</div> -->
 
 <br />
+<h3>Pool A and B</h3>
+<mat-divider></mat-divider>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <mat-card class="card-picture" *ngFor="let picture of pictures">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <span fxFlex="80%">{{ picture.title }}</span>
+        <mat-icon fxFlex="10%">mode_edit</mat-icon>
+        <mat-icon fxFlex="10%">delete</mat-icon>
+      </mat-card-title>
+      <img mat-card-image [src]="picture.img" />
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="card-picture" *ngFor="let picture of pictures">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <span fxFlex="80%">{{ picture.title }}</span>
+        <mat-icon fxFlex="10%">mode_edit</mat-icon>
+        <mat-icon fxFlex="10%">delete</mat-icon>
+      </mat-card-title>
+      <img mat-card-image [src]="picture.img" />
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<br />
+<br />
+<mat-divider></mat-divider>
+
+<mat-grid-list cols="1" rowHeight="2:1">
+  <button mat-raised-button color="primary">랜덤 대진표 생성 !</button>
+</mat-grid-list>
+
 <h3>Pool A</h3>
 <mat-chip-list>
   <mat-chip color="warn" selected>조창범</mat-chip>
