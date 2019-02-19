@@ -1,135 +1,258 @@
+<div style="display:flex">
+  <div
+    cdkDropList
+    [cdkDropListData]="artists"
+    [cdkDropListConnectedTo]="[secondList, tList]"
+    #firstList="cdkDropList"
+    (cdkDropListDropped)="drop($event)"
+    style="width:40%"
+  >
+    <div *ngFor="let artist of artists" class="pop" cdkDrag>
+      <mat-chip-list fxLayoutAlign="center">
+        <mat-chip style="margin:10px">
+          {{ artist }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+  <div
+    cdkDropList
+    [cdkDropListData]="alteArtists"
+    [cdkDropListConnectedTo]="[firstList,tList]"
+    #secondList="cdkDropList"
+    (cdkDropListDropped)="drop($event)"
+    style="width:40%;margin-left:20px"
+  >
+    <div *ngFor="let artist of alteArtists" class="pop" cdkDrag>
+      {{ artist }}
+    </div>
+  </div>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[firstList, secondList]"
+    #tList="cdkDropList"
+    (cdkDropListDropped)="drop($event)"
+    style="width:40%;margin-left:20px"
+  >
+  <div *ngFor="let item of todo" class="pop" cdkDrag>
+      {{ item }}
+    </div>
+  </div>
+
+  <!-- <div
+    cdkDropList
+    [cdkDropListData]="artists"
+    [cdkDropListConnectedTo]="secondList"
+    #firstList="cdkDropList"
+    (cdkDropListDropped)="drop($event)"
+    style="width:40%"
+  >
+    <div *ngFor="let artist of artists" class="pop" cdkDrag>
+        <mat-chip-list fxLayoutAlign="center">
+            <mat-chip style="margin:10px">
+              {{ artist }}
+            </mat-chip>
+          </mat-chip-list>
+
+    </div>
+    
+
+  </div>
+  <div 
+    cdkDropList
+    [cdkDropListData]="alteArtists"
+    [cdkDropListConnectedTo]="firstList"
+    #secondList="cdkDropList"
+    (cdkDropListDropped)="drop($event)"
+    style="width:40%;margin-left:20px"
+  >
+    <div *ngFor="let artist of alteArtists" class="pop" cdkDrag>
+      {{ artist }}
+    </div>
+  </div> -->
+</div>
+
+<!-- 
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    style="width:100px"
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    
+    <div *ngFor="let member of members" cdkDrag>
+      <mat-chip-list fxLayoutAlign="center">
+        <mat-chip style="margin:10px">
+          {{ member.name }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    style="width:100px"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+  </div>
+</div> -->
+
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>{{ title }}</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- <div
-  class="container"
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxLayoutWrap
-  fxLayoutGap="0.5%"
-  fxLayoutAlign="center"
->
-  <div fxFlex="20%">
-    <img
-      mat-card-image
-      class="img"
-      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/8V46UZCS0V.jpg"
-    />
-  </div>
-  <div fxFlex="20%">
-    <img
-      mat-card-image
-      class="img"
-      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/LTLE4QGRVQ.jpg"
-    />
-  </div>
-  <div fxFlex="20%">
-    <img
-      mat-card-image
-      class="img"
-      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/R926LU1YEA.jpg"
-    />
-  </div>
-  <div fxFlex="20%">
-    <img
-      mat-card-image
-      class="img"
-      src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/U9PP3KXXY2.jpg"
-    />
-  </div>
-</div> -->
-
-<div class="container">
-  <h3>All Members</h3>
-  <mat-divider></mat-divider>
-  <mat-chip cdkDrag *ngFor="let member of members" style="margin:10px;">
+<h3>All Members</h3>
+<mat-divider></mat-divider>
+<!-- <mat-chip-list>
+  <mat-chip *ngFor="let member of members" style="margin:10px">
     {{ member.name }}
   </mat-chip>
-  <mat-divider></mat-divider>
+</mat-chip-list> -->
+
+<div
+cdkDropList
+[cdkDropListData]="members"
+[cdkDropListConnectedTo]="[poolAList, poolBList]"
+#allList="cdkDropList"
+(cdkDropListDropped)="drop($event)"
+>
+<div *ngFor="let member of members"  cdkDrag>
+  <mat-chip-list >
+    <mat-chip style="margin:10px" >
+      {{ member.name }}
+    </mat-chip>
+  </mat-chip-list>
+</div>
 </div>
 
-<!-- <div style="margin:5px;">
-    
-    <mat-chip cdkDrag cdkDragLockAxis="y" >조창범</mat-chip>
-    <mat-chip cdkDrag >BBB</mat-chip>
-    <mat-chip cdkDrag>고용재</mat-chip>
-    <mat-chip cdkDrag >DDD</mat-chip>
-</div> -->
+
+
+<mat-divider></mat-divider>
 
 <br />
-<h3>Pool A and B</h3>
+<h3>Match Pools</h3>
 <mat-divider></mat-divider>
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="2" rowHeight="22rem">
   <mat-grid-tile>
-    <mat-card class="card-picture" *ngFor="let picture of pictures">
-      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-        <span fxFlex="80%">{{ picture.title }}</span>
-        <mat-icon fxFlex="10%">mode_edit</mat-icon>
-        <mat-icon fxFlex="10%">delete</mat-icon>
-      </mat-card-title>
-      <img mat-card-image [src]="picture.img" />
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Pool A</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        
+          <div
+          cdkDropList
+          [cdkDropListData]="poolA"
+          [cdkDropListConnectedTo]="[allList, poolBList]"
+          #poolAList="cdkDropList"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div *ngFor="let member of poolA"  cdkDrag>
+            <mat-chip-list fxLayoutAlign="center">
+              <mat-chip style="margin:10px">
+                {{ member.name }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+
+
+
+      </mat-card-content>
     </mat-card>
   </mat-grid-tile>
+
   <mat-grid-tile>
-    <mat-card class="card-picture" *ngFor="let picture of pictures">
-      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-        <span fxFlex="80%">{{ picture.title }}</span>
-        <mat-icon fxFlex="10%">mode_edit</mat-icon>
-        <mat-icon fxFlex="10%">delete</mat-icon>
-      </mat-card-title>
-      <img mat-card-image [src]="picture.img" />
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Pool B</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        
+            <div
+            cdkDropList
+            [cdkDropListData]="poolB"
+            [cdkDropListConnectedTo]="[allList, poolAList]"
+            #poolBList="cdkDropList"
+            (cdkDropListDropped)="drop($event)"
+            
+          >
+            <div *ngFor="let member of poolB"  cdkDrag>
+              <mat-chip-list fxLayoutAlign="center">
+                <mat-chip style="margin:10px">
+                  {{ member.name }}
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+        
+      </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
 
-<br />
-<br />
 <mat-divider></mat-divider>
 
-<mat-grid-list cols="1" rowHeight="2:1">
-  <button mat-raised-button color="primary">랜덤 대진표 생성 !</button>
+<mat-grid-list cols="1" rowHeight="2:1" style="margin:10px">
+  <div fxLayoutAlign="center">
+    <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
+  </div>
 </mat-grid-list>
 
-<h3>Pool A</h3>
-<mat-chip-list>
-  <mat-chip color="warn" selected>조창범</mat-chip>
-  <mat-chip color="warn" selected>BBB</mat-chip>
-  <mat-chip color="warn" selected>고용재</mat-chip>
-  <mat-chip color="warn" selected>DDD</mat-chip>
-</mat-chip-list>
-<br />
-<h3>Pool B</h3>
-<mat-chip-list>
-  <mat-chip color="accent" selected>EEE</mat-chip>
-  <mat-chip color="accent" selected>임좌배</mat-chip>
-  <mat-chip color="accent" selected>GGG</mat-chip>
-  <mat-chip color="accent" selected>HHH</mat-chip>
-</mat-chip-list>
-<br />
+<h3>Match Results</h3>
 
-<!--The content below is only a placeholder and can be replaced.-->
-<!-- <div style="text-align:center">   test test test 
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
- -->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Match 1</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Cho/Ko vs. Lim/Shin
+    </p>
+  </mat-card-content>
+</mat-card>
+<br />
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Match 2</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Cho/Ko vs. Lim/Shin
+    </p>
+  </mat-card-content>
+</mat-card>
+<br />
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Match 3</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Cho/Ko vs. Lim/Shin
+    </p>
+  </mat-card-content>
+</mat-card>
+
 <!-- 
 
 <h1>
@@ -188,7 +311,7 @@
   </span>
 </div> -->
 
-<h3>Basic Buttons</h3>
+<!-- <h3>Basic Buttons</h3>
 <div class="example-button-row">
   <button mat-button>Basic</button>
   <button mat-button color="primary">Primary</button>
@@ -206,17 +329,17 @@
   <button mat-raised-button color="warn">Warn</button>
   <button mat-raised-button>Disabled</button>
   <a mat-raised-button routerLink=".">Link</a>
-</div>
+</div> -->
 
 <!-- <h3>json-server examples</h3>
 <div class="example-button-row">
   <a mat-raised-button color="primary" [routerLink]="['/list']"><mat-icon>list</mat-icon></a>
   <a mat-raised-button color="primary" [routerLink]="['/create']"><mat-icon>add</mat-icon></a>
 </div> -->
-
+<!-- 
 <h3>input?</h3>
 <div>
   <mat-form-field>
     <input matInput placeholder="Simple Input" [(ngModel)]="title" />
   </mat-form-field>
-</div>
+</div> -->

@@ -12,13 +12,11 @@ import {
   MatDividerModule
 } from "@angular/material";
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [],
   imports: [
-
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -30,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatDividerModule,
     FlexLayoutModule
+    
   ],
   exports: [
     MatInputModule,
@@ -43,6 +42,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatDividerModule,
     FlexLayoutModule
+    
   ]
 })
 export class NgMaterialModule {}

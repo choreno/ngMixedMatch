@@ -3,49 +3,49 @@
     {
       "id": 1,
       "name": "AAA",
-      "lastPool": "aaa"
+      "pool": "A"
     },
     {
       "id": 2,
       "name": "BBB",
-      "lastPool": ""
+      "pool": "B"
     },
     {
       "id": 3,
-      "name": "CCC",
-      "lastPool": ""
+      "name": "CCCA",
+      "pool": "A"
     },
     {
       "id": 4,
-      "name": "DDD",
-      "lastPool": ""
+      "name": "DDDB",
+      "pool": "B"
     },
     {
       "id": 5,
-      "name": "EEE",
-      "lastPool": ""
+      "name": "EEEB",
+      "pool": "B"
     },
 
     {
       "id": 6,
-      "name": "FFF",
-      "lastPool": ""
+      "name": "FFFA",
+      "pool": "A"
     },
     {
       "id": 7,
-      "name": "DDDE",
-      "lastPool": ""
+      "name": "DDDAA",
+      "pool": "A"
     },
     {
       "id": 8,
-      "name": "EEEE",
-      "lastPool": ""
+      "name": "EEEEAA",
+      "pool": "A"
     },
 
     {
       "id": 9,
-      "name": "FFFF",
-      "lastPool": ""
+      "name": "FFFFBB",
+      "pool": "B"
     }
   ]
 }
