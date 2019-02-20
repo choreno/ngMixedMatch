@@ -28,9 +28,8 @@ export class AppComponent {
     this.getMembers();
     // this.getPoolA();
     // this.getPoolB();
-    this.poolA.push({name:'itemA', pool:'A'});
-    this.poolB.push({name:'itemB', pool:'B'});
-
+    this.poolA.push({ name: "itemA", pool: "A" });
+    this.poolB.push({ name: "itemB", pool: "B" });
   }
 
   getMembers() {
@@ -43,7 +42,7 @@ export class AppComponent {
 
   getPoolA() {
     this.poolA = [];
-    this.rest.getMembersByPool('A').subscribe((data: {}) => {
+    this.rest.getMembersByPool("A").subscribe((data: {}) => {
       console.log(data);
       this.poolA = data;
     });
@@ -51,7 +50,7 @@ export class AppComponent {
 
   getPoolB() {
     this.poolB = [];
-    this.rest.getMembersByPool('B').subscribe((data: {}) => {
+    this.rest.getMembersByPool("B").subscribe((data: {}) => {
       console.log(data);
       this.poolB = data;
     });
@@ -106,7 +105,7 @@ export class AppComponent {
   // drop(event: CdkDragDrop<string[]>) {
 
   //     moveItemInArray(
-  //       this.artists,
+  //       event.container.data,
   //       event.previousIndex,
   //       event.currentIndex
   //     );
@@ -128,5 +127,6 @@ export class AppComponent {
         event.currentIndex
       );
     }
-  }
+  } 
+  
 }

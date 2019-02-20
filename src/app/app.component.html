@@ -1,6 +1,21 @@
-<div style="display:flex">
+<!-- <mat-card>  
+    <div class="alert alert-info">  
+      <strong>Drag and Drop with Horizontal Orientation</strong>  
+    </div>  
+    <div class="example-container mat-elevation-z8">  
+      <div cdkDropList  class="example-list" cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)">  
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>  
+      </div>  
+    </div>  
+  </mat-card>  
+ -->
+
+<br>
+
+<div style="display:flex;" >
   <div
-    cdkDropList
+    cdkDropList cdkDropListOrientation="horizontal" 
     [cdkDropListData]="artists"
     [cdkDropListConnectedTo]="[secondList, tList]"
     #firstList="cdkDropList"
@@ -18,7 +33,7 @@
   <div
     cdkDropList
     [cdkDropListData]="alteArtists"
-    [cdkDropListConnectedTo]="[firstList,tList]"
+    [cdkDropListConnectedTo]="[firstList, tList]"
     #secondList="cdkDropList"
     (cdkDropListDropped)="drop($event)"
     style="width:40%;margin-left:20px"
@@ -30,13 +45,14 @@
 
   <div
     cdkDropList
+    cdkDropListOrientation="horizontal"
     [cdkDropListData]="todo"
     [cdkDropListConnectedTo]="[firstList, secondList]"
     #tList="cdkDropList"
     (cdkDropListDropped)="drop($event)"
     style="width:40%;margin-left:20px"
   >
-  <div *ngFor="let item of todo" class="pop" cdkDrag>
+    <div *ngFor="let item of todo" class="pop" cdkDrag>
       {{ item }}
     </div>
   </div>
@@ -128,24 +144,29 @@
   </mat-chip>
 </mat-chip-list> -->
 
-<div
-cdkDropList
-[cdkDropListData]="members"
-[cdkDropListConnectedTo]="[poolAList, poolBList]"
-#allList="cdkDropList"
-(cdkDropListDropped)="drop($event)"
->
-<div *ngFor="let member of members"  cdkDrag>
-  <mat-chip-list >
-    <mat-chip style="margin:10px" >
-      {{ member.name }}
-    </mat-chip>
+<br>
+
+<mat-chip-list>
+    <div 
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [cdkDropListData]="members"
+      [cdkDropListConnectedTo]="[poolAList, poolBList]"
+      #allList="cdkDropList"
+      (cdkDropListDropped)="drop($event)"
+
+      style="display:flex;flex-direction: row;flex-wrap: wrap"
+
+    >
+      <div *ngFor="let member of members" cdkDrag  style="text-align: center;margin-top:5px">
+        <mat-chip style="text-align: center;margin-top:5px">
+          {{ member.name }}
+        </mat-chip>
+      </div>
+    </div>
+  
   </mat-chip-list>
-</div>
-</div>
-
-
-
+<br>
 <mat-divider></mat-divider>
 
 <br />
@@ -158,15 +179,14 @@ cdkDropList
         <mat-card-title>Pool A</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        
-          <div
+        <div
           cdkDropList
           [cdkDropListData]="poolA"
           [cdkDropListConnectedTo]="[allList, poolBList]"
           #poolAList="cdkDropList"
           (cdkDropListDropped)="drop($event)"
         >
-          <div *ngFor="let member of poolA"  cdkDrag>
+          <div *ngFor="let member of poolA" cdkDrag>
             <mat-chip-list fxLayoutAlign="center">
               <mat-chip style="margin:10px">
                 {{ member.name }}
@@ -174,9 +194,6 @@ cdkDropList
             </mat-chip-list>
           </div>
         </div>
-
-
-
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
@@ -187,24 +204,21 @@ cdkDropList
         <mat-card-title>Pool B</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        
-            <div
-            cdkDropList
-            [cdkDropListData]="poolB"
-            [cdkDropListConnectedTo]="[allList, poolAList]"
-            #poolBList="cdkDropList"
-            (cdkDropListDropped)="drop($event)"
-            
-          >
-            <div *ngFor="let member of poolB"  cdkDrag>
-              <mat-chip-list fxLayoutAlign="center">
-                <mat-chip style="margin:10px">
-                  {{ member.name }}
-                </mat-chip>
-              </mat-chip-list>
-            </div>
+        <div
+          cdkDropList
+          [cdkDropListData]="poolB"
+          [cdkDropListConnectedTo]="[allList, poolAList]"
+          #poolBList="cdkDropList"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div *ngFor="let member of poolB" cdkDrag>
+            <mat-chip-list fxLayoutAlign="center">
+              <mat-chip style="margin:10px">
+                {{ member.name }}
+              </mat-chip>
+            </mat-chip-list>
           </div>
-        
+        </div>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
