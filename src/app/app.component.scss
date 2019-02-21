@@ -1,3 +1,24 @@
+.pool-list {
+  width: 100px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pool-card {
+  max-width: 120px;
+}
+
+
+
+//////////////////////////////////////////////////////////
+
+
 // add a pop class to the html file first
 .pop{
   height: 50px;
@@ -41,6 +62,18 @@
   border-radius: 4px;
   overflow: hidden;
 }
+.example-list2 {
+  width: 100px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 
 .example-box {
   padding: 20px 10px;
