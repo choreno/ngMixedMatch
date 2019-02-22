@@ -39,13 +39,13 @@
     {
       "id": 8,
       "name": "EEEEAA",
-      "pool": "A"
+      "pool": "X"
     },
 
     {
       "id": 9,
       "name": "FFFFBB",
-      "pool": "B"
+      "pool": "X"
     }
   ]
 }

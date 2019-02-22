@@ -4,42 +4,74 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<h3>All Members</h3>
-<mat-divider></mat-divider>
-<br />
-<mat-chip-list>
-  <div
-    cdkDropList
-    cdkDropListOrientation="horizontal"
-    [cdkDropListData]="members"
-    [cdkDropListConnectedTo]="[poolAList, poolBList]"
-    #allList="cdkDropList"
-    (cdkDropListDropped)="drop($event)"
-    style="display:flex;flex-direction: row;flex-wrap: wrap"
-  >
+
+<div class="flex-container">
+  <div style="border: 1px solid red; ">
     <div
-      *ngFor="let member of members"
-      cdkDrag
-      style="text-align: center;margin-top:5px"
+      style="justify-content: space-around; display:flex;flex-direction:row; border: 1px solid black;  ;"
     >
-      <mat-chip style="text-align: center;margin-top:5px">
-        {{ member.name }}
-      </mat-chip>
+      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
+        <mat-chip-list>
+          <div
+            cdkDropList
+            [cdkDropListData]="poolA"
+            [cdkDropListConnectedTo]="[allList, poolBList]"
+            #poolAList="cdkDropList"
+            (cdkDropListDropped)="drop($event)"
+            class="pool-list"
+          >
+            <div *ngFor="let member of poolA" cdkDrag >
+              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
+                {{ member.name }}
+              </mat-chip>
+            </div>
+          </div>
+        </mat-chip-list>
+      </div>
+      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
+        <mat-chip-list>
+          <div
+            cdkDropList
+            [cdkDropListData]="remainedMembers"
+            [cdkDropListConnectedTo]="[poolAList, poolBList]"
+            #allList="cdkDropList"
+            (cdkDropListDropped)="drop($event)"
+            class="pool-list"
+          >
+            <div *ngFor="let member of remainedMembers" cdkDrag >
+              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
+                {{ member.name }}
+              </mat-chip>
+            </div>
+          </div>
+        </mat-chip-list>
+      </div>
+      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
+        <mat-chip-list fxLayoutAlign="center">
+          <div
+            cdkDropList
+            [cdkDropListData]="poolB"
+            [cdkDropListConnectedTo]="[allList, poolAList]"
+            #poolBList="cdkDropList"
+            (cdkDropListDropped)="drop($event)"
+            class="pool-list"
+          >
+            <div *ngFor="let member of poolB" cdkDrag>
+              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
+                {{ member.name }}
+              </mat-chip>
+            </div>
+          </div>
+        </mat-chip-list>
+      </div>
     </div>
   </div>
-</mat-chip-list>
-<br />
-<mat-divider></mat-divider>
 
-<br />
-<h3>Match Pools</h3>
-<mat-divider></mat-divider>
-
-<div
-  style="margin-top:30px;display: flex;flex-direction: column ; align-items: center;height: 300px;background: grey"
->
-  <div style="display:flex;flex-direction: row ; justify-content: space-around; align-items: center">
-    <div>
+  <div style="border: 1px solid yellow;  text-align: center;">
+    <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
+  </div>
+  <!-- <div style=" background-color: black; display:flex;flex-direction: row ; justify-content: space-around; align-items: center">
+    <div style="background-color: yellow; margin:20px;">
       <mat-card class="pool-card">
         <mat-card-header>
           <mat-card-title>Pool A</mat-card-title>
@@ -64,8 +96,35 @@
         </mat-card-content>
       </mat-card>
     </div>
+
     <div>
-      <mat-card class="pool-card" style="height:100%">
+      <mat-card class="pool-card">
+        <mat-card-header>
+          <mat-card-title>All</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-chip-list fxLayoutAlign="center">
+            <div
+              cdkDropList
+              [cdkDropListData]="poolA"
+              [cdkDropListConnectedTo]="[allList, poolBList]"
+              #poolAList="cdkDropList"
+              (cdkDropListDropped)="drop($event)"
+              class="pool-list"
+            >
+              <div *ngFor="let member of members" cdkDrag>
+                <mat-chip style="display: flex;justify-content: center">
+                  {{ member.name }}
+                </mat-chip>
+              </div>
+            </div>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card class="pool-card" >
         <mat-card-header>
           <mat-card-title>Pool B</mat-card-title>
         </mat-card-header>
@@ -89,10 +148,11 @@
         </mat-card-content>
       </mat-card>
     </div>
+
   </div>
-  <div style="margin-top:100px">
+  <div style="margin-top:100px ; background-color: blue;">
     <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
-  </div>
+  </div> -->
 </div>
 
 <br />

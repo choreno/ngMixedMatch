@@ -20,23 +20,38 @@ import {
 export class AppComponent {
   title = "title will be here ...";
   members: any = [];
+
+  remainedMembers: any = [];
   poolA: any = [];
   poolB: any = [];
   constructor(private rest: RestService) {}
 
   ngOnInit() {
     this.getMembers();
-    // this.getPoolA();
-    // this.getPoolB();
-    this.poolA.push({ name: "itemA", pool: "A" });
-    this.poolB.push({ name: "itemB", pool: "B" });
+    //this.getPoolA();
+    //this.getPoolB();
+    // this.poolA.push({ name: "itemA", pool: "A" });
+    // this.poolB.push({ name: "itemB", pool: "B" });
   }
 
   getMembers() {
     this.members = [];
     this.rest.getMembers().subscribe((data: {}) => {
-      console.log(data);
       this.members = data;
+
+      this.remainedMembers = this.members.filter(function(x) {
+        return x.pool == 'X'  ; 
+      });
+      console.log(this.remainedMembers) ;
+
+      this.poolA = this.members.filter(function(x) {
+        return x.pool == 'A';
+      });
+
+      this.poolB = this.members.filter(function(x) {
+        return x.pool == 'B';
+      });
+      
     });
   }
 
@@ -127,6 +142,5 @@ export class AppComponent {
         event.currentIndex
       );
     }
-  } 
-  
+  }
 }
