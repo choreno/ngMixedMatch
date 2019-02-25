@@ -9,10 +9,11 @@ import {
   MatChipsModule,
   MatTableModule,
   MatGridListModule,
-  MatDividerModule
+  MatDividerModule,
+  MatBadgeModule
 } from "@angular/material";
 
-import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatTableModule,
     MatGridListModule,
     MatDividerModule,
-    FlexLayoutModule
+    MatBadgeModule
+    
     
   ],
   exports: [
@@ -41,7 +43,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatTableModule,
     MatGridListModule,
     MatDividerModule,
-    FlexLayoutModule
+    MatBadgeModule
+
     
   ]
 })

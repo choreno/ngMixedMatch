@@ -9,8 +9,11 @@ import { from } from "rxjs";
 import {
   CdkDragDrop,
   moveItemInArray,
-  transferArrayItem
+  transferArrayItem,
+  CdkDragEnter,
+  CdkDragExit
 } from "@angular/cdk/drag-drop";
+import { element } from "@angular/core/src/render3";
 
 @Component({
   selector: "app-root",
@@ -21,17 +24,32 @@ export class AppComponent {
   title = "title will be here ...";
   members: any = [];
 
-  remainedMembers: any = [];
+  availableMembers: any = [];
   poolA: any = [];
   poolB: any = [];
   constructor(private rest: RestService) {}
 
+  numberOfPoolA: number;
+  numberOfPoolB: number; 
+
   ngOnInit() {
     this.getMembers();
-    //this.getPoolA();
-    //this.getPoolB();
-    // this.poolA.push({ name: "itemA", pool: "A" });
-    // this.poolB.push({ name: "itemB", pool: "B" });
+    
+  }
+
+  goodLuck() {
+    console.log(this.poolA);
+    console.log(this.poolB);
+    console.log('poolA count:' + this.poolA.length, ' poolB count: ' + this.poolB.length);
+
+    this.numberOfPoolA = this.poolA.length;
+    this.numberOfPoolB = this.poolB.length; 
+
+    if(this.numberOfPoolA != this.numberOfPoolB) {
+      alert('Pool A, Pool B 선수숫자가 일치하지 않습니다.')
+      return; 
+    }
+
   }
 
   getMembers() {
@@ -39,95 +57,42 @@ export class AppComponent {
     this.rest.getMembers().subscribe((data: {}) => {
       this.members = data;
 
-      this.remainedMembers = this.members.filter(function(x) {
-        return x.pool == 'X'  ; 
+      this.availableMembers = this.members.filter(function(x) {
+        return x.pool == "X";
       });
-      console.log(this.remainedMembers) ;
+
 
       this.poolA = this.members.filter(function(x) {
-        return x.pool == 'A';
+        return x.pool == "A";
       });
 
       this.poolB = this.members.filter(function(x) {
-        return x.pool == 'B';
+        return x.pool == "B";
       });
-      
+
+      this.numberOfPoolA = this.poolA.length;
+      this.numberOfPoolB = this.poolB.length; 
     });
   }
 
-  getPoolA() {
-    this.poolA = [];
-    this.rest.getMembersByPool("A").subscribe((data: {}) => {
-      console.log(data);
-      this.poolA = data;
-    });
-  }
-
-  getPoolB() {
-    this.poolB = [];
-    this.rest.getMembersByPool("B").subscribe((data: {}) => {
-      console.log(data);
-      this.poolB = data;
-    });
-  }
-
-  todo = ["Get to work", "Pick up groceries", "Go home", "Fall asleep"];
-
-  done = ["Get up", "Brush teeth", "Take a shower", "Check e-mail", "Walk dog"];
-
-  // drop(event: CdkDragDrop<string[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-  //   }
+  // getPoolA() {
+  //   this.poolA = [];
+  //   this.rest.getMembersByPool("A").subscribe((data: {}) => {
+  //     console.log(data);
+  //     this.poolA = data;
+  //   });
   // }
 
-  artists = [
-    "Artist I - Davido",
-    "Artist II - Wizkid",
-    "Artist III - Burna Boy",
-    "Artist IV - Kiss Daniel",
-    "Artist V - Mayorkun",
-    "Artist VI - Mr. Eazi",
-    "Artist VII - Tiwa Savage",
-    "Artist VIII - Blaqbonez",
-    "Artist IX - Banky W",
-    "Artist X - Yemi Alade",
-    "Artist XI - Perruzi",
-    "Artist XII - Seyi Shay",
-    "Artist XIII - Teni"
-  ];
-
-  alteArtists = [
-    "Artist 1 — Odunsi",
-    "Artist 2 — Nonso",
-    "Artist 3 — Wavy the creator",
-    "Artist 4 — Dwin",
-    "Artist 5 — SDC",
-    "Artist 6 — Teni"
-  ];
-
-  // drop(event: CdkDragDrop<string[]>) {
-
-  //     moveItemInArray(
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-
+  // getPoolB() {
+  //   this.poolB = [];
+  //   this.rest.getMembersByPool("B").subscribe((data: {}) => {
+  //     console.log(data);
+  //     this.poolB = data;
+  //   });
   // }
 
   drop(event: CdkDragDrop<string[]>) {
+
     if (event.previousContainer !== event.container) {
       transferArrayItem(
         event.previousContainer.data,
@@ -142,5 +107,28 @@ export class AppComponent {
         event.currentIndex
       );
     }
+
+    //updated number of players at pool
+    this.numberOfPoolA = this.poolA.length;
+    this.numberOfPoolB = this.poolB.length; 
+
   }
+
+  // enteredPoolA(event: CdkDragEnter<string[]>) {
+  //   console.log("Entered", event.item.data);
+
+  //   // this.poolA.push({id: name: element.name, pool:"A"}) ;
+
+  //   // this.poolA.forEach(element => {
+
+  //   //   console.log(element.name);
+
+  //   // });
+  // }
+  // exitedPoolA(event: CdkDragExit<string[]>) {
+  //   console.log("Exited", event.item.data);
+  //   //console.log(this.poolA);
+  //   //console.log(event.container.data.length);
+  //   //this.numberOfPoolA = this.poolA.length;
+  // }
 }

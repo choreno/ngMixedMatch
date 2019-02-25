@@ -1,41 +1,14 @@
-// //background image ???
-// #main {
-//   position: relative;
-// }
-// div#first {
-//   background-image: url("../assets/king_of_hearts.png");
-//   opacity: 0.15;
-//   width: 100px;
-//   height: 200px ;
-//   background-size: 100% 100%;
-//   background-repeat: no-repeat;
-//   background-position: center;
-
-// }
-// div#second {
-//   width: 100px;
-//   height: 200px;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-// }
-
-
 .flex-container {
   display: flex;
   flex-direction: column;
-  //background: grey;
   justify-content: center;
 }
 .flex-row {
   display: flex;
   flex-direction: row;
-  //border: 1px solid black;
   justify-content: space-around;
 
   div {
-    color: red;
-    //border: 1px solid blue;
     margin: 5% 1%;
     text-align: center;
   }
@@ -55,11 +28,10 @@
 .pool-container {
   display: flex;
   flex-direction: row;
-  //border: 1px solid black;
   justify-content: space-around;
 }
 
-.pool-list {
+@mixin pool-list($image) {
   width: 100px;
   max-width: 100%;
   border: solid 1px #ccc;
@@ -70,10 +42,21 @@
   background: white;
   border-radius: 4px;
   overflow: hidden;
-  // background-image: url("../assets/king_of_hearts_20.png");
-  // background-size: 100% 100%;
-  // background-repeat: no-repeat;
-  // background-position: center;
+  background-image: $image; // image variable
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pool-list-A {
+  @include pool-list(url("../assets/g1.png"));
+}
+
+.pool-list-B {
+  @include pool-list(url("../assets/g8.png"));
+}
+
+.pool-list-available {
+  @include pool-list(url("../assets/g3.png"));
 }
 
 .member-name {
@@ -81,6 +64,7 @@
   flex-direction: column;
   align-content: center;
   margin-top: 5px;
+  font-weight: bold;
 }
 
 .flex-btn-container {
@@ -92,8 +76,50 @@
   }
 }
 
+.flex-card {
+  //border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .match-card {
   margin: 2% 1%;
+  width: 200px;
+  height: 220px;
+  border: 1px solid black;
+}
+
+.card-container {
+  height: 80%;
+  background-image: url("../assets/p1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.card-text {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5% 1%;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  div {
+    margin: 3% 1%;
+    width: 90px;
+  }
 }
 
 //CDK
@@ -104,89 +130,3 @@
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-
-
-//////////////////////////////////////////////////////////
-
-// add a pop class to the html file first
-// .pop {
-//   height: 50px;
-//   width: 100%;
-//   margin-left: 20px;
-//   margin-right: 20px;
-//   border: 1px solid saddlebrown;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// #poolTable {
-//   background: lightblue;
-// }
-
-// .example-card {
-//   max-width: 100px;
-// }
-
-// .example-header-image {
-//   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-//   background-size: cover;
-// }
-
-// cbc  - drag&drop
-
-// .example-list {
-//   width: 1000px;
-//   max-width: 100%;
-//   border: solid 1px #ccc;
-//   min-height: 60px;
-//   display: flex;
-//   flex-direction: row;
-//   background: white;
-//   border-radius: 4px;
-//   overflow: hidden;
-// }
-// .example-list2 {
-//   width: 100px;
-//   max-width: 100%;
-//   border: solid 1px #ccc;
-//   min-height: 60px;
-//   display: flex;
-//   flex-direction: column;
-//   background: white;
-//   border-radius: 4px;
-//   overflow: hidden;
-// }
-
-// .example-box {
-//   padding: 20px 10px;
-//   border-right: solid 1px #ccc;
-//   color: rgba(0, 0, 0, 0.87);
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   box-sizing: border-box;
-//   cursor: move;
-//   background: white;
-//   font-size: 14px;
-//   flex-grow: 1;
-//   flex-basis: 0;
-// }
-
-// .cdk-drag-preview {
-//   box-sizing: border-box;
-//   border-radius: 4px;
-//   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-//     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-// }
-
-
-// .example-box:last-child {
-//   border: none;
-// }
-
-// .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-//   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-// }
