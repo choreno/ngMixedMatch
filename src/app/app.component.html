@@ -1,83 +1,31 @@
+<!-- background image -->
+
+<!-- <div id="main">
+  <div id="first"></div>
+  <div id="second">
+    <p id="container">
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    </p>
+  </div>
+</div> -->
+
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>{{ title }}</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
-
 <div class="flex-container">
-  <div style="border: 1px solid red; ">
-    <div
-      style="justify-content: space-around; display:flex;flex-direction:row; border: 1px solid black;  ;"
-    >
-      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
+  <div>
+    <div class="flex-row">
+      <div>
         <mat-chip-list>
-          <div
-            cdkDropList
-            [cdkDropListData]="poolA"
-            [cdkDropListConnectedTo]="[allList, poolBList]"
-            #poolAList="cdkDropList"
-            (cdkDropListDropped)="drop($event)"
-            class="pool-list"
-          >
-            <div *ngFor="let member of poolA" cdkDrag >
-              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
-                {{ member.name }}
-              </mat-chip>
+          <div class="chip-list">
+            <div class="pool-title">
+              Pool A (3)
             </div>
-          </div>
-        </mat-chip-list>
-      </div>
-      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
-        <mat-chip-list>
-          <div
-            cdkDropList
-            [cdkDropListData]="remainedMembers"
-            [cdkDropListConnectedTo]="[poolAList, poolBList]"
-            #allList="cdkDropList"
-            (cdkDropListDropped)="drop($event)"
-            class="pool-list"
-          >
-            <div *ngFor="let member of remainedMembers" cdkDrag >
-              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
-                {{ member.name }}
-              </mat-chip>
-            </div>
-          </div>
-        </mat-chip-list>
-      </div>
-      <div style="border: 1px solid blue;  margin:5% 1%; text-align:center">
-        <mat-chip-list fxLayoutAlign="center">
-          <div
-            cdkDropList
-            [cdkDropListData]="poolB"
-            [cdkDropListConnectedTo]="[allList, poolAList]"
-            #poolBList="cdkDropList"
-            (cdkDropListDropped)="drop($event)"
-            class="pool-list"
-          >
-            <div *ngFor="let member of poolB" cdkDrag>
-              <mat-chip style="display: flex; flex-direction: column; align-content: center; margin-top:5px; " >
-                {{ member.name }}
-              </mat-chip>
-            </div>
-          </div>
-        </mat-chip-list>
-      </div>
-    </div>
-  </div>
-
-  <div style="border: 1px solid yellow;  text-align: center;">
-    <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
-  </div>
-  <!-- <div style=" background-color: black; display:flex;flex-direction: row ; justify-content: space-around; align-items: center">
-    <div style="background-color: yellow; margin:20px;">
-      <mat-card class="pool-card">
-        <mat-card-header>
-          <mat-card-title>Pool A</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-chip-list fxLayoutAlign="center">
             <div
               cdkDropList
               [cdkDropListData]="poolA"
@@ -87,118 +35,111 @@
               class="pool-list"
             >
               <div *ngFor="let member of poolA" cdkDrag>
-                <mat-chip style="display: flex;justify-content: center">
+                <mat-chip class="member-name">
                   {{ member.name }}
                 </mat-chip>
               </div>
             </div>
-          </mat-chip-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
+          </div>
+        </mat-chip-list>
+      </div>
 
-    <div>
-      <mat-card class="pool-card">
-        <mat-card-header>
-          <mat-card-title>All</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-chip-list fxLayoutAlign="center">
+      <div>
+        <mat-chip-list>
+          <div class="chip-list">
+            <div class="pool-title">
+              Availables
+            </div>
             <div
               cdkDropList
-              [cdkDropListData]="poolA"
-              [cdkDropListConnectedTo]="[allList, poolBList]"
-              #poolAList="cdkDropList"
+              [cdkDropListData]="remainedMembers"
+              [cdkDropListConnectedTo]="[poolAList, poolBList]"
+              #allList="cdkDropList"
               (cdkDropListDropped)="drop($event)"
               class="pool-list"
             >
-              <div *ngFor="let member of members" cdkDrag>
-                <mat-chip style="display: flex;justify-content: center">
+              <div *ngFor="let member of remainedMembers" cdkDrag>
+                <mat-chip class="member-name">
                   {{ member.name }}
                 </mat-chip>
               </div>
             </div>
-          </mat-chip-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div>
-      <mat-card class="pool-card" >
-        <mat-card-header>
-          <mat-card-title>Pool B</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-chip-list fxLayoutAlign="center">
+          </div>
+        </mat-chip-list>
+      </div>
+      <div>
+        <mat-chip-list>
+          <div class="chip-list">
+            <div class="pool-title">
+              Pool B (3)
+            </div>
             <div
               cdkDropList
               [cdkDropListData]="poolB"
               [cdkDropListConnectedTo]="[allList, poolAList]"
-              #poolAList="cdkDropList"
+              #poolBList="cdkDropList"
               (cdkDropListDropped)="drop($event)"
               class="pool-list"
             >
               <div *ngFor="let member of poolB" cdkDrag>
-                <mat-chip style="display: flex;justify-content: center">
+                <mat-chip class="member-name">
                   {{ member.name }}
                 </mat-chip>
               </div>
             </div>
-          </mat-chip-list>
-        </mat-card-content>
-      </mat-card>
+          </div>
+        </mat-chip-list>
+      </div>
     </div>
-
   </div>
-  <div style="margin-top:100px ; background-color: blue;">
-    <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
-  </div> -->
+
+  <div class="flex-btn-container">
+    <button mat-raised-button color="accent">
+      랜덤 대진표 생성 !
+    </button>
+  </div>
 </div>
 
 <br />
-<br />
-<br />
 
-<mat-grid-list cols="1" rowHeight="2:1" style="margin:10px">
-  <div fxLayoutAlign="center">
-    <button mat-raised-button color="accent">랜덤 대진표 생성 !</button>
+<div class="flex-container">
+  <div class="match-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Match 1</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Cho/Ko vs. Lim/Shin
+        </p>
+      </mat-card-content>
+    </mat-card>
   </div>
-</mat-grid-list>
-
-<h3>Match Results</h3>
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Match 1</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Cho/Ko vs. Lim/Shin
-    </p>
-  </mat-card-content>
-</mat-card>
-<br />
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Match 2</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Cho/Ko vs. Lim/Shin
-    </p>
-  </mat-card-content>
-</mat-card>
-<br />
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Match 3</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Cho/Ko vs. Lim/Shin
-    </p>
-  </mat-card-content>
-</mat-card>
+  <div class="match-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Match 2</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Cho/Ko vs. Lim/Shin
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="match-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Match 3</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Cho/Ko vs. Lim/Shin
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 
 <!-- 
 
