@@ -36,7 +36,7 @@
               (cdkDropListDropped)="drop($event)"
               class="pool-list-A"
             >
-              <div *ngFor="let member of poolA" cdkDrag >
+              <div *ngFor="let member of poolA" cdkDrag>
                 <mat-chip class="member-name" color="primary" selected>
                   {{ member.name }}
                 </mat-chip>
@@ -60,7 +60,7 @@
               (cdkDropListDropped)="drop($event)"
               class="pool-list-available"
             >
-              <div *ngFor="let member of availableMembers" cdkDrag >
+              <div *ngFor="let member of availableMembers" cdkDrag>
                 <mat-chip
                   class="member-name"
                   selected
@@ -77,7 +77,10 @@
         <mat-chip-list>
           <div class="chip-list">
             <div class="pool-title">
-              <span matBadge="{{ numberOfPoolB }}" matBadgeOverlap="false" matBadgeColor="warn"
+              <span
+                matBadge="{{ numberOfPoolB }}"
+                matBadgeOverlap="false"
+                matBadgeColor="warn"
                 >Pool B</span
               >
             </div>
@@ -116,92 +119,193 @@
 <mat-divider></mat-divider>
 <br />
 
-<div class="flex-card">
-  <div class="match-card">
-    <mat-card class="card-container">
-      <mat-card-content>
-        <div class="flex-column">
-          <div class="card-text">
-            Match 1
+<!-- <div *ngFor="let match of matchA; let i = index">
+  {{ i }} {{ match[i].name }}
+</div> -->
+
+<div *ngIf="isMatchVisible">
+  <div class="flex-card">
+    <div class="match-card" *ngFor="let match of [1,2]; let i = index">
+      <mat-card class="card-container">
+        <mat-card-content>
+          <div class="flex-column">
+            <div class="card-text">Match {{ match }}</div>
+            
+            <div class="flex-row">
+              <div >
+                <mat-chip class="member-name" selected color="primary">
+                  {{ shuffledA[match*2 -2].name }}
+                </mat-chip>
+              </div>
+              <div>
+                <mat-chip class="member-name" selected color="warn">
+                  {{ shuffledB[match*2-2].name }}
+                </mat-chip>
+              </div>
+            </div>
+
+            <div class="card-text">VS.</div>
+
+            <div class="flex-row">
+              <div>
+                <mat-chip class="member-name" selected color="primary">
+                  {{ shuffledA[match*2 -2 +1].name }}
+                </mat-chip>
+              </div>
+              <div>
+                <mat-chip class="member-name" selected color="warn">
+                  {{ shuffledB[match*2 -2+1].name }}
+                </mat-chip>
+              </div>
+            </div>
           </div>
-          <div class="flex-row">
-            <div>
-              <mat-chip class="member-name" selected color="primary">
-                고용재
-              </mat-chip>
-            </div>
-            <div>
-              <mat-chip class="member-name" selected color="warn">
-                조창범
-              </mat-chip>
-            </div>
-          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-          <div class="card-text">VS.</div>
+    <!-- Remainders -->
 
-          <div class="flex-row">
-            <div>
-              <mat-chip class="member-name" selected color="primary">
-                임좌배
-              </mat-chip>
-            </div>
-            <div>
-              <mat-chip class="member-name" selected color="warn">
-                배희성성
-              </mat-chip>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+    <div class="match-card">
+      <mat-card
+        style="height: 80%;background-image: url('../assets/p2.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+      >
+        <mat-card-header>
+          <mat-card-title>Match 2</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Cho1/Ko1 vs. Lim1/Shin1
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="match-card">
+      <mat-card
+        style="height: 80%;background-image: url('../assets/p3.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+      >
+        <mat-card-header>
+          <mat-card-title>Match 3</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Cho/Ko vs. Lim/Shin
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-  <!-- Remainders -->
-
-  <div class="match-card">
-    <mat-card
-      style="height: 80%;background-image: url('../assets/p2.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
-    >
-      <mat-card-header>
-        <mat-card-title>Match 2</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Cho1/Ko1 vs. Lim1/Shin1
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="match-card">
-    <mat-card
-      style="height: 80%;background-image: url('../assets/p3.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
-    >
-      <mat-card-header>
-        <mat-card-title>Match 3</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Cho/Ko vs. Lim/Shin
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="match-card">
-    <mat-card
-      style="height: 80%;background-image: url('../assets/p4.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
-    >
-      <mat-card-header>
-        <mat-card-title>Match 4</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Cho/Ko vs. Lim/Shin
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <div class="match-card">
+      <mat-card
+        style="height: 80%;background-image: url('../assets/p4.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+      >
+        <mat-card-header>
+          <mat-card-title>Match 4</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Cho/Ko vs. Lim/Shin
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>
+
+<!-- 
+
+
+<div *ngIf="isMatchVisible">
+    <div class="flex-card">
+  
+      <div class="match-card" *ngFor="let member of shuffledA; index as i; ">
+        <mat-card class="card-container">
+          <mat-card-content>
+            <div class="flex-column">
+              <div class="card-text">
+                Match 1
+              </div>
+              <div class="flex-row">
+                <div>
+                  <mat-chip class="member-name" selected color="primary">
+                    고용재
+                  </mat-chip>
+                </div>
+                <div>
+                  <mat-chip class="member-name" selected color="warn">
+                    조창범
+                  </mat-chip>
+                </div>
+              </div>
+  
+              <div class="card-text">VS.</div>
+  
+              <div class="flex-row">
+                <div>
+                  <mat-chip class="member-name" selected color="primary">
+                    임좌배
+                  </mat-chip>
+                </div>
+                <div>
+                  <mat-chip class="member-name" selected color="warn">
+                    배희성성
+                  </mat-chip>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+ 
+      <div class="match-card">
+        <mat-card
+          style="height: 80%;background-image: url('../assets/p2.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+        >
+          <mat-card-header>
+            <mat-card-title>Match 2</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Cho1/Ko1 vs. Lim1/Shin1
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="match-card">
+        <mat-card
+          style="height: 80%;background-image: url('../assets/p3.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+        >
+          <mat-card-header>
+            <mat-card-title>Match 3</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Cho/Ko vs. Lim/Shin
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  
+      <div class="match-card">
+        <mat-card
+          style="height: 80%;background-image: url('../assets/p4.png');background-repeat: no-repeat; background-size:100% 100%; background-position: center"
+        >
+          <mat-card-header>
+            <mat-card-title>Match 4</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Cho/Ko vs. Lim/Shin
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+ -->
 
 <!-- 
 

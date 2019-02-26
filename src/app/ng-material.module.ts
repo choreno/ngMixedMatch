@@ -10,7 +10,8 @@ import {
   MatTableModule,
   MatGridListModule,
   MatDividerModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatSnackBarModule
 } from "@angular/material";
 
 
@@ -28,7 +29,8 @@ import {
     MatTableModule,
     MatGridListModule,
     MatDividerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSnackBarModule
     
     
   ],
@@ -43,8 +45,8 @@ import {
     MatTableModule,
     MatGridListModule,
     MatDividerModule,
-    MatBadgeModule
-
+    MatBadgeModule,
+    MatSnackBarModule
     
   ]
 })
