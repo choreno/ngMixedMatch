@@ -1,17 +1,10 @@
 import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { RestService } from "./rest.service";
-import { filter } from "rxjs/operators";
-import { from, of } from "rxjs";
 
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
-  CdkDragEnter,
-  CdkDragExit
 } from "@angular/cdk/drag-drop";
 
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
@@ -36,10 +29,8 @@ export class AppComponent {
   numberOfPoolB: number;
 
   isMatchVisible: boolean = false;
-  matchCount: number = 0;
-  matchA: any = [];
-  matchB: any = [];
-
+  
+  
   constructor(private rest: RestService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
@@ -56,9 +47,18 @@ export class AppComponent {
       return;
     }
 
-    if (this.numberOfPoolA < 2 && this.numberOfPoolB < 2) {
+    if (this.numberOfPoolA < 2 ) {
       this.showSnackBar(
         "최소 두명의 선수를 양쪽 Pool에 할당하시기 바랍니다.",
+        null
+      );
+      this.isMatchVisible = false;
+      return;
+    }
+    if( this.numberOfPoolA % 2 != 0 ) {
+
+      this.showSnackBar(
+        "짝수명 만큼의 선수를 양쪽 Pool에 할당하시기 바랍니다.",
         null
       );
       this.isMatchVisible = false;
@@ -69,40 +69,25 @@ export class AppComponent {
     this.isMatchVisible = true;
 
     //Shuffle each pool
-
     this.shuffledA = this.poolA.slice(0);
     this.shuffledB = this.poolB.slice(0);
 
     this.shuffle(this.shuffledA);
     this.shuffle(this.shuffledB);
 
-    // //chunk array
-    // //i.e., [0,1,2,3,4,5,6,7] => [[0,1],[2,3],[4,5],[6,7]]
-    // let chunkSize = 2;
-    // this.matchA = [];
-    // this.matchB = [];
-    // while (this.shuffledA.length > 0) {
-    //   this.matchA.push(this.shuffledA.splice(0, chunkSize));
-    //   this.matchB.push(this.shuffledB.splice(0, chunkSize));
-    // }
-
-    // this.matchCount = this.matchA.length; //either matchA or matchB
-    // console.log(this.matchA);
-    // console.log(this.matchB);
-    console.log(this.shuffledA);
   }
 
-  // matchArray(count:number){
+  matchArray(){
 
-  //   var pseudoArray = new Array();
+    var loopArray = new Array();
 
-  //   let iteration = Math.ceil(count/2);
-  //   for(let i = 0 ; i < iteration ;i++){
-  //     pseudoArray.push(i);
-  //   }
+    let iteration = Math.ceil(this.shuffledA.length/2);
+    for(let i = 1 ; i <= iteration ;i++){
+      loopArray.push(i);
+    }
 
-  //   return pseudoArray;
-  // }
+    return loopArray;
+  }
 
   shuffle(obj: any) {
     for (var i = 0; i < obj.length; i++) {

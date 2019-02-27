@@ -2,49 +2,76 @@
   "members": [
     {
       "id": 1,
-      "name": "AAA",
+      "name": "강빌립",
       "pool": "A"
     },
     {
       "id": 2,
-      "name": "BBB",
-      "pool": "B"
+      "name": "임좌배",
+      "pool": "A"
     },
     {
       "id": 3,
-      "name": "CCCA",
+      "name": "백동욱",
       "pool": "A"
     },
     {
       "id": 4,
-      "name": "DDDB",
-      "pool": "B"
+      "name": "임지석",
+      "pool": "A"
     },
     {
       "id": 5,
-      "name": "EEEB",
-      "pool": "B"
+      "name": "고용재",
+      "pool": "A"
     },
 
     {
       "id": 6,
-      "name": "FFFA",
+      "name": "한동우",
       "pool": "A"
     },
     {
       "id": 7,
-      "name": "DDDAA",
+      "name": "권혁제",
       "pool": "A"
     },
     {
       "id": 8,
-      "name": "EEEEAA",
-      "pool": "X"
+      "name": "신상헌",
+      "pool": "A"
     },
 
     {
       "id": 9,
-      "name": "FFFFBB",
+      "name": "조창범",
+      "pool": "B"
+    },
+    {
+      "id": 10,
+      "name": "윤치홍",
+      "pool": "B"
+    },
+
+    {
+      "id": 11,
+      "name": "박윤석",
+      "pool": "B"
+    },
+    {
+      "id": 12,
+      "name": "배희성",
+      "pool": "B"
+    },
+
+    {
+      "id": 13,
+      "name": "안진우",
+      "pool": "B"
+    },
+    {
+      "id": 14,
+      "name": "김효중",
       "pool": "B"
     }
   ]
