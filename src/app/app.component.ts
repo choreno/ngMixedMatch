@@ -11,6 +11,8 @@ import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
 
 import { MemberService } from "./service/member.service";
 import { Member } from "./model/member.model";
+import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: "app-root",
@@ -33,31 +35,41 @@ export class AppComponent {
   isMatchVisible: boolean = false;
 
   //fireMembers: Member[];
-  fireMembers: any= [];
+  fireMembers: Observable<any[]> ;
 
   constructor(
     private rest: RestService,
     private snackBar: MatSnackBar,
-    private MemberService: MemberService
-  ) {}
+    private MemberService: MemberService,
+    private db:AngularFirestore
+  ) {
+
+    this.fireMembers = db.collection('members').valueChanges();
+
+    console.log(this.fireMembers);
+  }
 
   ngOnInit() {
     this.getMembers();
-    this.MemberService.getFirebaseMembers().subscribe(result => {
-      this.fireMembers = result;
-    });
-
-    // this.MemberService.getFirebaseMembers().subscribe(data => {
-    //   this.fireMembers = data.map(x => {
-    //     return {
-    //       id: x.payload.doc.id,
-    //       ...x.payload.doc.data()
-    //     } as Member;
-    //   });
+    // this.MemberService.getFirebaseMembers().subscribe(result => {
+    //   this.fireMembers = result;
+    //   console.log(result);
     // });
 
-    //console.log('ttt');
-    //console.log(this.fireMembers);
+    // this.MemberService.getFirebaseMembers().subscribe(data => {
+    //   this.fireMembers = db.collection('members').valueChanges();
+    //   // this.fireMembers = data.map(x => {
+    //   //   console.log(x.payload.doc.data());
+    //   //   // return {
+    //   //   //   name: x.payload.doc.data.name,
+    //   //   //   pool: x.payload.doc.data.pool,
+          
+    //   //   // } as Member;
+    //   // });
+    // });
+
+    // //console.log('ttt');
+    // console.log(this.fireMembers);
   }
 
   goodLuck() {
@@ -144,10 +156,7 @@ export class AppComponent {
       this.numberOfPoolA = this.poolA.length;
       this.numberOfPoolB = this.poolB.length;
     });
-
-
-
-    console.log(this.fireMembers);
+    
   }
 
   drop(event: CdkDragDrop<string[]>) {

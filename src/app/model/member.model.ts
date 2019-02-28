@@ -1,5 +1,5 @@
 export class Member {
-    id:string;
+    //id:string;
     name: string;
     pool: string; 
 }
