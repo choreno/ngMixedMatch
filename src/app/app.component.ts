@@ -4,10 +4,13 @@ import { RestService } from "./rest.service";
 import {
   CdkDragDrop,
   moveItemInArray,
-  transferArrayItem,
+  transferArrayItem
 } from "@angular/cdk/drag-drop";
 
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
+
+import { MemberService } from "./service/member.service";
+import { Member } from "./model/member.model";
 
 @Component({
   selector: "app-root",
@@ -17,7 +20,6 @@ import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
 export class AppComponent {
   title = "title will be here ...";
   members: any = [];
-
   availableMembers: any = [];
   poolA: any = [];
   poolB: any = [];
@@ -29,12 +31,33 @@ export class AppComponent {
   numberOfPoolB: number;
 
   isMatchVisible: boolean = false;
-  
-  
-  constructor(private rest: RestService, private snackBar: MatSnackBar) {}
+
+  //fireMembers: Member[];
+  fireMembers: any= [];
+
+  constructor(
+    private rest: RestService,
+    private snackBar: MatSnackBar,
+    private MemberService: MemberService
+  ) {}
 
   ngOnInit() {
     this.getMembers();
+    this.MemberService.getFirebaseMembers().subscribe(result => {
+      this.fireMembers = result;
+    });
+
+    // this.MemberService.getFirebaseMembers().subscribe(data => {
+    //   this.fireMembers = data.map(x => {
+    //     return {
+    //       id: x.payload.doc.id,
+    //       ...x.payload.doc.data()
+    //     } as Member;
+    //   });
+    // });
+
+    //console.log('ttt');
+    //console.log(this.fireMembers);
   }
 
   goodLuck() {
@@ -47,7 +70,7 @@ export class AppComponent {
       return;
     }
 
-    if (this.numberOfPoolA < 2 ) {
+    if (this.numberOfPoolA < 2) {
       this.showSnackBar(
         "최소 두명의 선수를 양쪽 Pool에 할당하시기 바랍니다.",
         null
@@ -55,8 +78,7 @@ export class AppComponent {
       this.isMatchVisible = false;
       return;
     }
-    if( this.numberOfPoolA % 2 != 0 ) {
-
+    if (this.numberOfPoolA % 2 != 0) {
       this.showSnackBar(
         "짝수명 만큼의 선수를 양쪽 Pool에 할당하시기 바랍니다.",
         null
@@ -74,15 +96,13 @@ export class AppComponent {
 
     this.shuffle(this.shuffledA);
     this.shuffle(this.shuffledB);
-
   }
 
-  matchArray(){
-
+  matchArray() {
     var loopArray = new Array();
 
-    let iteration = Math.ceil(this.shuffledA.length/2);
-    for(let i = 1 ; i <= iteration ;i++){
+    let iteration = Math.ceil(this.shuffledA.length / 2);
+    for (let i = 1; i <= iteration; i++) {
       loopArray.push(i);
     }
 
@@ -124,6 +144,10 @@ export class AppComponent {
       this.numberOfPoolA = this.poolA.length;
       this.numberOfPoolB = this.poolB.length;
     });
+
+
+
+    console.log(this.fireMembers);
   }
 
   drop(event: CdkDragDrop<string[]>) {

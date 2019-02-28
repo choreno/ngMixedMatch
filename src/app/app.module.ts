@@ -8,9 +8,15 @@ import { FormsModule } from "@angular/forms";
 import { NgMaterialModule } from "./ng-material.module";
 import { HttpClientModule } from "@angular/common/http";
 
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
-
+//Firestore
+import { environment } from "../environments/environment";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+//remove firestore warning
+import { FirestoreSettingsToken } from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,9 +26,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     NgMaterialModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [{ provide: FirestoreSettingsToken, useValue: {} }], //remove firestore warning
   bootstrap: [AppComponent]
 })
 export class AppModule {}
