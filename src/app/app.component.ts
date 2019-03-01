@@ -34,6 +34,8 @@ export class AppComponent {
 
   isMatchVisible: boolean = false;
 
+  btnPressCount: number = 0; 
+
   //fireMembers: Member[];
   fireMembers: Observable<any[]> ;
 
@@ -44,9 +46,9 @@ export class AppComponent {
     private db:AngularFirestore
   ) {
 
-    this.fireMembers = db.collection('members').valueChanges();
+    //this.fireMembers = db.collection('members').valueChanges();
 
-    console.log(this.fireMembers);
+    // console.log(this.fireMembers);
   }
 
   ngOnInit() {
@@ -70,9 +72,14 @@ export class AppComponent {
 
     // //console.log('ttt');
     // console.log(this.fireMembers);
+    this.fireMembers = this.db.collection('members').valueChanges();
+
   }
 
   goodLuck() {
+
+    
+
     this.numberOfPoolA = this.poolA.length;
     this.numberOfPoolB = this.poolB.length;
 
@@ -98,6 +105,8 @@ export class AppComponent {
       this.isMatchVisible = false;
       return;
     }
+
+    this.btnPressCount++ ; 
 
     //make match visible
     this.isMatchVisible = true;
@@ -178,5 +187,8 @@ export class AppComponent {
     //updated number of players at pool
     this.numberOfPoolA = this.poolA.length;
     this.numberOfPoolB = this.poolB.length;
+
+    this.btnPressCount = 0 ; 
+    
   }
 }
