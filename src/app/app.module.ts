@@ -13,7 +13,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 //Firestore
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireDatabaseModule } from "@angular/fire/database";
+//import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFirestoreModule, AngularFirestore } from "@angular/fire/firestore";
 //remove firestore warning
 import { FirestoreSettingsToken } from "@angular/fire/firestore";
@@ -28,7 +28,6 @@ import { FirestoreSettingsToken } from "@angular/fire/firestore";
     HttpClientModule,
     DragDropModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
     AngularFirestoreModule
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }, AngularFirestore], //remove firestore warning

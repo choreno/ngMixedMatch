@@ -11,8 +11,12 @@ import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
 
 import { MemberService } from "./service/member.service";
 import { Member } from "./model/member.model";
-import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from "@angular/fire/firestore";
+import { Observable, from } from "rxjs";
+import { map, filter } from "rxjs/operators";
 
 @Component({
   selector: "app-root",
@@ -20,11 +24,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "title will be here ...";
+  title = "KTC Mixed Match";
   members: any = [];
-  availableMembers: any = [];
-  poolA: any = [];
-  poolB: any = [];
+
+  availableMembers: Member[] = [];
+  poolA: Member[] = [];
+  poolB: Member[] = [];
 
   shuffledA: any = [];
   shuffledB: any = [];
@@ -34,50 +39,67 @@ export class AppComponent {
 
   isMatchVisible: boolean = false;
 
-  btnPressCount: number = 0; 
+  btnPressCount: number = 0;
 
-  //fireMembers: Member[];
-  fireMembers: Observable<any[]> ;
+  afsMemberCol: AngularFirestoreCollection<Member>;
+  afsMembers: Observable<Member[]>;
+  obsPoolA: Observable<Member[]>;
+  obsPoolB: Observable<Member[]>;
+  obsAvailable: Observable<Member[]>;
 
   constructor(
     private rest: RestService,
     private snackBar: MatSnackBar,
     private MemberService: MemberService,
-    private db:AngularFirestore
-  ) {
-
-    //this.fireMembers = db.collection('members').valueChanges();
-
-    // console.log(this.fireMembers);
-  }
+    private afs: AngularFirestore
+  ) {}
 
   ngOnInit() {
-    this.getMembers();
-    // this.MemberService.getFirebaseMembers().subscribe(result => {
-    //   this.fireMembers = result;
-    //   console.log(result);
-    // });
 
-    // this.MemberService.getFirebaseMembers().subscribe(data => {
-    //   this.fireMembers = db.collection('members').valueChanges();
-    //   // this.fireMembers = data.map(x => {
-    //   //   console.log(x.payload.doc.data());
-    //   //   // return {
-    //   //   //   name: x.payload.doc.data.name,
-    //   //   //   pool: x.payload.doc.data.pool,
-          
-    //   //   // } as Member;
-    //   // });
-    // });
+    //this.getMembers();
 
-    // //console.log('ttt');
-    // console.log(this.fireMembers);
-    this.fireMembers = this.db.collection('members').valueChanges();
+    //angular firestore
+    this.afsMemberCol = this.afs.collection("members");
+    this.afsMembers = this.afsMemberCol.valueChanges();
+
+    this.obsPoolA = this.afsMembers.pipe(
+      map(x => {
+        return x.filter(y => y.pool == "A");
+      })
+    );
+
+    this.obsPoolB = this.afsMembers.pipe(
+      map(x => {
+        return x.filter(y => y.pool == "B");
+      })
+    );
+
+    this.obsAvailable = this.afsMembers.pipe(
+      map(x => {
+        return x.filter(y => (y.pool == "X"));
+      })
+    );
+
+    //****************************************
+    //converting observable to array, but it will not show unless async loading is done.
+    this.obsPoolA.subscribe(x => {
+      this.poolA = x as Member[];
+      this.numberOfPoolA = this.poolA.length;
+    });
+
+    this.obsPoolB.subscribe(x => {
+      this.poolB = x as Member[];
+      this.numberOfPoolB = this.poolB.length;
+    });
+
+    this.obsAvailable.subscribe(x => {
+      this.availableMembers = x as Member[];
+    })
+
 
   }
 
   goodLuck() {
-
     
 
     this.numberOfPoolA = this.poolA.length;
@@ -106,7 +128,7 @@ export class AppComponent {
       return;
     }
 
-    this.btnPressCount++ ; 
+    this.btnPressCount++;
 
     //make match visible
     this.isMatchVisible = true;
@@ -141,32 +163,31 @@ export class AppComponent {
 
   showSnackBar(message: string, action: string) {
     let config = new MatSnackBarConfig();
-    config.duration = 2000;
+    config.duration = 3000;
     this.snackBar.open(message, action, config);
   }
 
-  getMembers() {
-    this.members = [];
-    this.rest.getMembers().subscribe((data: {}) => {
-      this.members = data;
+  // getMembers() {
+  //   this.members = [];
+  //   this.rest.getMembers().subscribe((data: {}) => {
+  //     this.members = data;
 
-      this.availableMembers = this.members.filter(function(x) {
-        return x.pool == "X";
-      });
+  //     this.availableMembers = this.members.filter(function(x) {
+  //       return x.pool == "X";
+  //     });
 
-      this.poolA = this.members.filter(function(x) {
-        return x.pool == "A";
-      });
+  //     this.poolA = this.members.filter(function(x) {
+  //       return x.pool == "A";
+  //     });
 
-      this.poolB = this.members.filter(function(x) {
-        return x.pool == "B";
-      });
+  //     this.poolB = this.members.filter(function(x) {
+  //       return x.pool == "B";
+  //     });
 
-      this.numberOfPoolA = this.poolA.length;
-      this.numberOfPoolB = this.poolB.length;
-    });
-    
-  }
+  //     this.numberOfPoolA = this.poolA.length;
+  //     this.numberOfPoolB = this.poolB.length;
+  //   });
+  // }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer !== event.container) {
@@ -188,7 +209,6 @@ export class AppComponent {
     this.numberOfPoolA = this.poolA.length;
     this.numberOfPoolB = this.poolB.length;
 
-    this.btnPressCount = 0 ; 
-    
+    this.btnPressCount = 0;
   }
 }
