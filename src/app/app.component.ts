@@ -9,7 +9,7 @@ import {
 
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
 
-import { MemberService } from "./service/member.service";
+//import { MemberService } from "./service/member.service";
 import { Member } from "./model/member.model";
 import {
   AngularFirestore,
@@ -50,7 +50,7 @@ export class AppComponent {
   constructor(
     private rest: RestService,
     private snackBar: MatSnackBar,
-    private MemberService: MemberService,
+    //private MemberService: MemberService,
     private afs: AngularFirestore
   ) {}
 
